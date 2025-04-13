@@ -7,7 +7,7 @@ const container = document.getElementById("container");
       });
       const data = await res.json();
       const products = data.products; 
-  
+      
       products.forEach((product) => {
         const card = document.createElement("div");
         card.className = "card";
@@ -17,11 +17,28 @@ const container = document.getElementById("container");
           
           
         `;
+
+
+        
+
         container.appendChild(card); // Append  cards to the container
-        // card.addEventListener()
-        card.addEventListener("click", function (e) {
-          console.log("test");
-          
+        
+        card.addEventListener("click", function () {
+          const isExpanded = card.classList.contains("expanded");
+        
+          if (!isExpanded) {
+            const productDetail = document.createElement('p');
+            productDetail.innerText = product.description;
+            productDetail.className = 'description';
+            card.appendChild(productDetail);
+            card.classList.add("expanded");
+          } else {
+            const description = card.querySelector('.description');
+            if (description) {
+              description.remove();
+            }
+            card.classList.remove("expanded");
+          }
         });
   
         console.log(product)
@@ -31,4 +48,3 @@ const container = document.getElementById("container");
     }
   })();
 
-  //i might use it later on <p>${product.description}</P>
