@@ -13,10 +13,16 @@ const container = document.getElementById("container");
         card.className = "card";
         card.innerHTML = `
           <img src="${product.images[0]}" alt="image of the product">
-          <h2>${product.title}</h2>
-          <p>${product.description}</P>
+          <h5>${product.title}</h5>
+          
+          
         `;
         container.appendChild(card); // Append  cards to the container
+        // card.addEventListener()
+        card.addEventListener("click", function (e) {
+          console.log("test");
+          
+        });
   
         console.log(product)
       });
@@ -24,3 +30,5 @@ const container = document.getElementById("container");
       console.error("Error fetching data:", err);
     }
   })();
+
+  //i might use it later on <p>${product.description}</P>
