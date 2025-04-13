@@ -1,5 +1,10 @@
 const container = document.getElementById("container");
 
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+
+
+
 (async function initialLoad() {
     try {
       const res = await fetch('https://dummyjson.com/products', {
@@ -8,17 +13,19 @@ const container = document.getElementById("container");
       const data = await res.json();
       const products = data.products; 
       
+      
       products.forEach((product) => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
           <img src="${product.images[0]}" alt="image of the product">
           <h5>${product.title}</h5>
+
           
           
         `;
 
-
+        
         
 
         container.appendChild(card); // Append  cards to the container
@@ -41,10 +48,30 @@ const container = document.getElementById("container");
           }
         });
   
-        console.log(product)
+        // console.log(product)
       });
     } catch (err) {
       console.error("Error fetching data:", err);
     }
   })();
 
+  
+  searchButton.addEventListener("click", async (event) => {
+    event.preventDefault(); // stops relaoding 
+
+    console.log( 'button')// event listenter is working-
+  
+    const query = searchInput.value.trim();
+    if (!query) return;
+  
+    try {
+      const res = await fetch(`https://dummyjson.com/products/search?q=${query}`, {
+        method: "GET"
+      });
+  
+      const data = await res.json();
+      displayProducts(data.products);
+    } catch (err) {
+      console.error("Search failed:", err);
+    }
+  });
