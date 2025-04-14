@@ -161,18 +161,20 @@ import { displayProducts } from './displayProduct.mjs';
 })();
 
 
-searchButton.addEventListener("click", async (event) => {
+searchButton.addEventListener("click", function (event) {
   event.preventDefault();
-  console.log('button clicked');
 
   const query = searchInput.value.trim();
   if (!query) return;
 
-  try {
-    const res = await fetch(`https://dummyjson.com/products/search?q=${query}`);
-    const data = await res.json();
-    displayProducts(data.products);
-  } catch (err) {
-    console.error("Search failed:", err);
-  }
+  fetch(`https://dummyjson.com/products/search?q=${query}`)
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      displayProducts(data.products);
+    })
+    .catch(function () {
+      console.error("Search failed");
+    });
 });
