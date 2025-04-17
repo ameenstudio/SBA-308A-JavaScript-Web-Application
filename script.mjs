@@ -2,10 +2,10 @@
 // import { searchButton } from './api.mjs';
 // import { displayProducts } from './displayProduct.mjs';
 
-// const container = document.getElementById("container");
+// const container = document.getElementById("container")
 
-// const searchButton = document.getElementById("search-button");
-// const searchInput = document.getElementById("search-input");
+// const searchButton = document.getElementById("search-button")
+// const searchInput = document.getElementById("search-input")
 
 
 
@@ -14,7 +14,7 @@
 //       const res = await fetch('https://dummyjson.com/products', {
 //         method: "GET",
 //       });
-//       const data = await res.json();
+//       const data = await res.json()
 //       const products = data.products; 
       
       
@@ -35,28 +35,28 @@
 //         container.appendChild(card); // Append  cards to the container
         
 //         card.addEventListener("click", function () {
-//           const isExpanded = card.classList.contains("expanded");
+//           const isExpanded = card.classList.contains("expanded")
 //           // console.log("test")
         
 //           if (!isExpanded) {
 //             const productDetail = document.createElement('p');
 //             productDetail.innerText = product.description;
-//             productDetail.className = 'description';
-//             card.appendChild(productDetail);
-//             card.classList.add("expanded");
+//             productDetail.className = 'description'
+//             card.appendChild(productDetail)
+//             card.classList.add("expanded")
 //           } else {
 //             const description = card.querySelector('.description');
 //             if (description) {
 //               description.remove();
 //             }
-//             card.classList.remove("expanded");
+//             card.classList.remove("expanded")
 //           }
 //         });
   
 //         // console.log(product)
 //       });
 //     } catch (err) {
-//       console.error("Error fetching data:", err);
+//       console.error("Error fetching data:", err)
 //     }
 //   })();
 
@@ -131,32 +131,32 @@ import { displayProducts } from './displayProduct.mjs';
     const products = data.products;
 
     products.forEach((product) => {
-      const card = document.createElement("div");
+      const card = document.createElement("div")
       card.className = "card";
       card.innerHTML = `
         <img src="${product.images[0]}" alt="image of the product">
         <h5>${product.title}</h5>
       `;
-      container.appendChild(card);
+      container.appendChild(card)
 
       card.addEventListener("click", () => {
         const isExpanded = card.classList.contains("expanded");
 
         if (!isExpanded) {
-          const productDetail = document.createElement('p');
+          const productDetail = document.createElement('p')
           productDetail.innerText = product.description;
           productDetail.className = 'description';
           card.appendChild(productDetail);
-          card.classList.add("expanded");
+          card.classList.add("expanded")
         } else {
-          const description = card.querySelector('.description');
-          if (description) description.remove();
+          const description = card.querySelector('.description')
+          if (description) description.remove()
           card.classList.remove("expanded");
         }
       });
     });
   } catch (err) {
-    console.error("Error fetching data:", err);
+    console.error("Error fetching data:", err)
   }
 })();
 
@@ -164,7 +164,7 @@ import { displayProducts } from './displayProduct.mjs';
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  const query = searchInput.value.trim();
+  const query = searchInput.value.trim()
   if (!query) return;
 
   fetch(`https://dummyjson.com/products/search?q=${query}`)
@@ -172,9 +172,9 @@ searchButton.addEventListener("click", function (event) {
       return res.json();
     })
     .then(function (data) {
-      displayProducts(data.products);
+      displayProducts(data.products)
     })
     .catch(function () {
-      console.error("Search failed");
+      console.error("Search failed")
     });
 });
